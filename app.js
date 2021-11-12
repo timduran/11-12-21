@@ -33,17 +33,17 @@ const items = [
 const renderItems = () => {
   document.getElementById('items').innerHTML = ''
 
-  for (let i = 0; i < items.length; i++) {
+  items.forEach((item, i) => {
     const itemElem = document.createElement('li')
     itemElem.className = 'list-group-item list-group-item-action d-flex justify-content-between align-items-start'
 
-    if (items[i].isDone) {
+    if (item.isDone) {
       itemElem.classList.add('bg-success')
     }
 
     itemElem.innerHTML = `
     <div class="ms-2 me-auto">
-    <div>${items[i].text}</div>
+    <div>${item.text}</div>
     </div>
     <div class="update itemBtn badge bg-success rounded-pill" data-index="${i}">
     <img class="update icon" src="./check-mark.png" alt="delete" data-index="${i}">
@@ -53,7 +53,30 @@ const renderItems = () => {
     </div>
     `
     document.getElementById('items').append(itemElem)
-  }
+
+  })
+
+  // for (let i = 0; i < items.length; i++) {
+  //   const itemElem = document.createElement('li')
+  //   itemElem.className = 'list-group-item list-group-item-action d-flex justify-content-between align-items-start'
+
+  //   if (items[i].isDone) {
+  //     itemElem.classList.add('bg-success')
+  //   }
+
+  //   itemElem.innerHTML = `
+  //   <div class="ms-2 me-auto">
+  //   <div>${items[i].text}</div>
+  //   </div>
+  //   <div class="update itemBtn badge bg-success rounded-pill" data-index="${i}">
+  //   <img class="update icon" src="./check-mark.png" alt="delete" data-index="${i}">
+  //   </div>
+  //   <div class="delete itemBtn badge bg-danger rounded-pill" data-index="${i}">
+  //   <img class="delete icon" src="./delete.png" alt="delete" data-index="${i}">
+  //   </div>
+  //   `
+  //   document.getElementById('items').append(itemElem)
+  // }
 }
   
   document.getElementById('addItem').addEventListener('click', event => {

@@ -11,24 +11,34 @@
 // </li>
 
 // list of items to render on page load
-const items = [
-  {
-    text: 'Take out trash',
-    isDone: false
-  },
-  {
-    text: 'Cook dinner',
-    isDone: true
-  },
-  {
-    text: 'Walk the dog',
-    isDone: false
-  },
-  {
-    text: 'Do laundry',
-    isDone: true
-  }
-]
+// const items = [
+//   {
+//     text: 'Take out trash',
+//     isDone: false
+//   },
+//   {
+//     text: 'Cook dinner',
+//     isDone: true
+//   },
+//   {
+//     text: 'Walk the dog',
+//     isDone: false
+//   },
+//   {
+//     text: 'Do laundry',
+//     isDone: true
+//   }
+// ]
+
+// localStorage.setItem('items', JSON.stringify(items))
+
+let items = []
+
+if (JSON.parse(localStorage.getItem('items'))) {
+  items = JSON.parse(localStorage.getItem('items'))
+}
+
+console.log(items)
 
 const renderItems = () => {
   document.getElementById('items').innerHTML = ''
@@ -89,6 +99,8 @@ const renderItems = () => {
 
   items.push(item)
 
+  localStorage.setItem('items', JSON.stringify(items))
+
   renderItems()
 
   document.getElementById('item').value = ''
@@ -98,6 +110,8 @@ document.addEventListener('click', event => {
   if (event.target.classList.contains('update')) {
     const index = parseInt(event.target.dataset.index)
     items[index].isDone = !items[index].isDone
+    localStorage.setItem('items', JSON.stringify(items))
+
     renderItems()
   }
 })
@@ -106,8 +120,23 @@ document.addEventListener('click', event => {
   if (event.target.classList.contains('delete')) {
     const index = parseInt(event.target.dataset.index)
     items.splice(index, 1)
+    localStorage.setItem('items', JSON.stringify(items))
+
     renderItems()
   }
 })
 
 renderItems()
+
+// localStorage.setItem('name', 'John Doe')
+// localStorage.removeItem('name')
+
+// if (localStorage.getItem('name')) {
+//   document.getElementById('name').textContent = ` ${localStorage.getItem('name')}`
+// }
+
+// let nums = [1, 2, 3, 4, 5]
+
+// localStorage.setItem('nums', JSON.stringify(nums))
+
+// console.log(JSON.parse(localStorage.getItem('nums')))

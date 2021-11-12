@@ -30,6 +30,7 @@ const items = [
   }
 ]
 
+// letting i = 0 and greater than the lenght
 const renderItems = () => {
   document.getElementById('items').innerHTML = ''
 
@@ -41,6 +42,7 @@ const renderItems = () => {
       itemElem.classList.add('bg-success')
     }
 
+    // naming all the div class
     itemElem.innerHTML = `
     <div class="ms-2 me-auto">
     <div>${items[i].text}</div>
